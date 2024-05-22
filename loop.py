@@ -76,8 +76,8 @@ for r in range(10):
                 require(~var_in(grid[r][c], RIGHT_CONNECTING))
             require(loop_graph[r][c] | (var_in(grid[r][c], ISOLATED)))
 while solve():
-    print('solution:')
-    print(grid)
+    print 'solution:' 
+    print grid
     x = BoolVar(True)
     for r in range(9):
         for c in range(9):
