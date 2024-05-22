@@ -1,15 +1,17 @@
+# -*- coding: cp936 -*-
+
 from claspy import *
 from grid import *
 
 puzzle = """\
-. ` ` ` ` ` ` ` ` `
-` ` ` ` ` ` ` ` ` `
-` ` ` ` ` ` ` ` . `
 ` ` ` ` ` ` ` ` ` `
 ` ` ` ` ` ` ` ` ` `
 ` ` ` ` ` ` ` ` ` `
-` ` ` ` ` ` ` ` . `
-` ` ` ` ` . ` ` ` `
+` ` ` ` ` ` ` ` ` `
+` ` ` ` ` ` ` ` ` `
+` ` ` ` ` ` ` ` ` `
+` ` ` ` ` ` ` ` ` `
+` ` ` ` ` ` ` ` ` `
 ` ` ` ` ` ` ` ` ` `
 ` ` ` ` ` ` ` ` ` `"""
 
@@ -20,10 +22,10 @@ for i in range(10):
 '''
 0 = -
 1 = |
-2 = â”›
-3 =â”–
-4 =â”Ž
-5 = â”’
+2 = ©¿
+3 =©º
+4 =©²
+5 = ©¶
 '''
 
 ISOLATED = ['.', '']
@@ -75,12 +77,6 @@ for r in range(10):
             if c == 9:
                 require(~var_in(grid[r][c], RIGHT_CONNECTING))
             require(loop_graph[r][c] | (var_in(grid[r][c], ISOLATED)))
-while solve():
-    print 'solution:' 
-    print grid
-    x = BoolVar(True)
-    for r in range(9):
-        for c in range(9):
-            x = x & (grid[r][c] == grid[r][c].value())
-    require(~x)
 
+if not solve():
+    print "you lost"
