@@ -296,8 +296,6 @@ def solve():
     values."""
     global last_bool, solution, debug_constraints, last_update
 
-    print 'Solving', last_bool, 'variables,', len(clasp_rules), 'rules'
-
     clasp_process = subprocess.Popen(CLASP_COMMAND.split(),
                                      stdin=subprocess.PIPE,
                                      stdout=subprocess.PIPE)
@@ -331,12 +329,6 @@ def solve():
             if verbose: print line.rstrip()
         else:
             clasp_output.append(line.rstrip())
-    if 'SATISFIABLE' in clasp_output: print 'SATISFIABLE'
-    elif 'UNSATISFIABLE' in clasp_output: print 'UNSATISFIABLE'
-    else: print '\n'.join(clasp_output)  # show info if there was an error
-    print
-    print 'Total time: %.2fs' % (time() - start_time)
-    print
     if solution and debug_constraints:
         for x, s in debug_constraints:
             if not x.value():
